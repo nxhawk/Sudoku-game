@@ -142,13 +142,26 @@ header{
   height: 425px;
   left: 100%;
 }
+/* handle square */
 .sq.clr_choosen{
-  background-color: #ABC9FF;
+  background-color: #ABC9FF!important;
 }
-
 .sq.clr{
   background-color: #e6eafa;
 }
+.sq.same{
+  background-color: #a9cff6;
+}
+.sq.err{
+  background-color: rgb(241, 197, 197);
+}
+.sq.true{
+  color: #0072e3;
+}
+.sq.false{
+  color: red;
+}
+/* //// */
 
 #game .right{
   
