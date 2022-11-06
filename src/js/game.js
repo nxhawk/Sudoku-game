@@ -197,3 +197,17 @@ sq_game.forEach((sq, index) => {
     sq.innerText = tableG[index];
   }
 });
+
+// model
+open = document.querySelector(".open");
+nRight = document.querySelector(".right-container");
+
+open.addEventListener("click", () => {
+  if (open.innerHTML == `<i class="fa-solid fa-bars"></i>`) {
+    open.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+    nRight.style.display = "flex";
+  } else {
+    open.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+    nRight.style.display = "none";
+  }
+});

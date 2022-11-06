@@ -1,4 +1,7 @@
 /* {} */
+:root{
+  --square: 47px;
+}
 *{
   box-sizing: border-box;
   padding: 0;
@@ -79,15 +82,16 @@ header{
 #game .left{
   width: 50%;
   display: flex;
-  max-width: 423px;
-  height: 423px;
+  min-width: calc(var(--square) * 9);
+  max-width: calc(var(--square) * 9);
+  height: calc(var(--square) * 9);
   flex-wrap: wrap;
   position: relative;
 }
 
 .left .sq{
-  width: 47px;
-  height: 47px;
+  width: var(--square);
+  height: var(--square);
   display: flex;
   border: 1px solid #d0d8e2;
   align-items: center;
@@ -102,8 +106,8 @@ header{
   position: absolute;
   border: none;
   background-color: #000;
-  width: 423px;
-  height: 2px;
+  width: calc(var(--square) * 9);
+  height: 3px;
   outline: none;
   top: 0;
   left: 0;
@@ -120,28 +124,29 @@ header{
 }
 .left .temp:nth-child(4){
   top: 100%;
-  height: 2.5px;
-  width: 425px;
+  height: 3px;
+  width: calc(var(--square) * 9);
 }
 .left .temp:nth-child(5){
-  width: 2px;
-  height: 423px;
+  width: 3px;
+  height: calc(var(--square) * 9);
 }
 .left .temp:nth-child(6){
-  width: 2px;
-  height: 423px;
+  width: 3px;
+  height: calc(var(--square) * 9);
   left: calc(100%/3);
 }
 .left .temp:nth-child(7){
-  width: 2px;
-  height: 423px;
+  width: 3px;
+  height: calc(var(--square) * 9);
   left: calc(200%/3);
 }
 .left .temp:nth-child(8){
-  width: 2px;
-  height: 425px;
+  width: 3px;
+  height: calc(var(--square) * 9 + 3px);
   left: 100%;
 }
+
 /* handle square */
 .sq.clr_choosen{
   background-color: #ABC9FF!important;
@@ -171,7 +176,7 @@ header{
 .container-game{
   margin: 0 auto;
   display: grid;
-  width: 50%;
+  width: 80%;
   grid-template-columns: calc(100%/3) calc(100%/3) calc(100%/3);
   grid-template-rows: calc(100%/3) calc(100%/3) calc(100%/3);
 }
@@ -185,14 +190,159 @@ header{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 100px;
+  width: 92%;
+  height: fit-content;
   transition: background-color .1s ease-in-out;
   border-radius: 10px;
+  padding: 1rem 0;
   outline: 0;
   font-weight: 200;
 }
 
 .item:hover{
   background-color: #dce3ed;
+}
+
+#game .right{
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.open{
+  z-index: 2;
+  font-size: 25px;
+  padding: 5px 8px;
+  margin-right: 5px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: none;
+}
+/* responsive mobile*/
+@media screen and (max-width: 950px) {
+  #game{
+    width: 100%;
+    padding: 0 10px;
+  }
+  #game .left{
+    width: 90%;
+  }
+  :root{
+    --square: 40px
+  }
+  .left .sq{
+    font-size: 25px;
+    font-weight: 200;
+  }
+  .container-game .item{
+    font-size: 40px;
+    margin-left: 10px;
+    padding: 10px 10px;
+  }
+}
+/* {}_______________ */
+@media screen and (max-width: 600px){
+  :root{
+    --square:30px
+  }
+  .container-game{
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  body{
+    overflow: hidden;
+  }
+  /* .right-container{
+    display: none;
+  } */
+  #game{
+    width: 100%;
+    display: block;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+  
+  .container .left img {
+    width: 110px;
+  }
+  #game .left{
+    margin: 0 auto;
+  }
+  header{
+    padding: 10px 0px;
+    height: fit-content;
+  }
+  :root{
+    --square: 40px;
+  }
+  #game .right{
+
+  }
+  .container-game{
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .container-game .item{
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 100;
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 285px) {
+  :root{
+    --square:29px;
+  }
+  .container-game .item{
+    font-size: 3rem;
+  }
+  header{
+    padding: 2px 0px;
+  }
+}
+/* //{} */
+@media screen and (max-width: 820px) {
+  .right-container{
+    
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+  }
+  .right-container div{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .right-container div:hover{
+    background-color: #eaeef4;
+    border-radius: 5px;
+  }
+  .open{
+    display: block;
+  }
+}
+
+
+.open:hover{
+  background-color: #e6eafa;
+  border-radius: 5px;
 }
