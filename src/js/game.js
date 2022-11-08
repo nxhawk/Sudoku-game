@@ -2,6 +2,7 @@ square = document.querySelector("#game .left");
 aSave = [];
 bSave = [];
 nSave = 0;
+rate = false;
 //repair screen
 const _repair = () => {
   for (let i = 0; i < 81; i++)
@@ -114,9 +115,11 @@ const _checkMask = () => {
     if (table[i] != tableR[i]) return false;
   return true;
 };
+onF = document.querySelector(".on_off");
 const _restart = () => {
   aSave = bSave = [];
   nSave = 0;
+  rate = false;
   current_square = -1;
   for (let i = 0; i < table.length; i++)
     if (tableG[i] == 0) {
@@ -126,6 +129,9 @@ const _restart = () => {
   _removeToggle();
   _check_err();
   _checkSame();
+  onF.innerText = "OFF";
+  onF.classList.remove("on");
+  document.querySelectorAll(".btn-ro")[2].style.border = "none";
 };
 
 const _checkFull = () => {
@@ -322,5 +328,20 @@ options.forEach((option, index) => {
     if (index == 0) _undo();
     else if (index == 1) _no_tick(current_square);
     else if (index == 3) _show_case(current_square);
+    else _rate();
   });
 });
+
+/// Rating feature
+const _rate = () => {
+  if (rate) {
+    onF.classList.remove("on");
+    onF.innerText = "OFF";
+    document.querySelectorAll(".btn-ro")[2].style.border = "none";
+  } else {
+    onF.classList.add("on");
+    onF.innerText = "ON";
+    document.querySelectorAll(".btn-ro")[2].style.border = "3px solid #3492f1";
+  }
+  rate = !rate;
+};

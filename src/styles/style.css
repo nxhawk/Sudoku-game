@@ -420,6 +420,11 @@ header{
   transition: background-color .1s ease-in-out;
 }
 
+.on_off.on{
+  background-color: #3d99f5;
+  color: #fff;
+}
+
 .option{
   display: flex;
   flex-direction: column;
