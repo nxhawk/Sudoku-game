@@ -209,6 +209,7 @@ header{
   margin: 0 auto;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 .open{
   z-index: 2;
@@ -310,8 +311,10 @@ header{
 }
 /* //{} */
 @media screen and (max-width: 820px) {
+  .option-game{
+    display: none;
+  }
   .right-container{
-    
     display: none;
     gap: 10px;
     flex-direction: column;
@@ -347,4 +350,113 @@ header{
 .open:hover{
   background-color: #e6eafa;
   border-radius: 5px;
+}
+
+
+/* newgame */
+.option-game{
+  width: 70%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-size: 400;
+}
+
+.option-game .btn{
+  opacity: 0.8;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 15px 0;
+  background-color: #0871db;
+  width: 100%;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.option-game .btn:hover{
+  opacity: 1;
+}
+
+
+.options{
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn-ro{
+  background-color: #eaeef4;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3492f1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.btn-ro:hover{
+  background-color: #d4d6dd;
+}
+
+.on_off{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -18%;
+  left: 66%;
+  background-color: #adb6c2;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  padding: 5px 6px;
+  transform: translateZ(0);
+  transition: background-color .1s ease-in-out;
+}
+
+.option{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.option .text{
+  color: #3492f1;
+  font-size: 14px;
+  line-height: 1.33;
+}
+
+
+@media screen and (max-width: 756px) {
+  .btn-ro{
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  .option .text{
+    font-size: 12px;
+  }
+  .on_off{
+    font-size: 10px;
+  }
+  .options{
+    margin-top: 12px;
+  }
+  .option-game{
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .options{
+    display: none;
+  }
 }

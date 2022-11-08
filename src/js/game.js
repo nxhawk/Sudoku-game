@@ -279,3 +279,8 @@ open.addEventListener("click", () => {
     nRight.style.display = "none";
   }
 });
+
+btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+  if (confirm("Do you want restart game?")) _restart();
+});
