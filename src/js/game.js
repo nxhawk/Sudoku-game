@@ -1,5 +1,7 @@
 square = document.querySelector("#game .left");
-
+aSave = [];
+bSave = [];
+nSave = 0;
 //repair screen
 const _repair = () => {
   for (let i = 0; i < 81; i++)
@@ -113,6 +115,8 @@ const _checkMask = () => {
   return true;
 };
 const _restart = () => {
+  aSave = bSave = [];
+  nSave = 0;
   current_square = -1;
   for (let i = 0; i < table.length; i++)
     if (tableG[i] == 0) {
@@ -137,7 +141,11 @@ const _checkFull = () => {
   }
 };
 //[]{}
-const _no_tick = (index) => {
+const _no_tick = (index, save = true) => {
+  if (save) {
+    aSave[nSave] = index;
+    bSave[nSave++] = +sq_game[index].innerText;
+  }
   sq_game[index].innerText = "";
   table[index] = 0;
   sq_game[index].classList.remove("true");
@@ -182,7 +190,11 @@ const _check_ok_square = (index) => {
   _magic_square(rowF, colF);
 };
 
-const _tick = (index, val) => {
+const _tick = (index, val, save = true) => {
+  if (save) {
+    aSave[nSave] = index;
+    bSave[nSave++] = +sq_game[index].innerText;
+  }
   sq_game[index].classList.remove("err");
   sq_game[index].classList.remove("true");
   sq_game[index].classList.remove("false");
@@ -283,4 +295,21 @@ open.addEventListener("click", () => {
 btn = document.querySelector(".btn");
 btn.addEventListener("click", () => {
   if (confirm("Do you want restart game?")) _restart();
+});
+
+const _undo = () => {
+  if (nSave == 0) return;
+  nSave -= 1; //
+  _removeToggle();
+  _chosenSq(aSave[nSave]);
+  _checkSame(aSave[nSave]);
+  if (+bSave[nSave] == 0) _no_tick(aSave[nSave], (save = false));
+  else _tick(aSave[nSave], bSave[nSave], (save = false));
+};
+// option config
+options = document.querySelectorAll(".option");
+options.forEach((option, index) => {
+  option.addEventListener("click", () => {
+    if (index == 0) _undo();
+  });
 });
