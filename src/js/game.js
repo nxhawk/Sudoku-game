@@ -142,6 +142,8 @@ const _checkFull = () => {
 };
 //[]{}
 const _no_tick = (index, save = true) => {
+  if (index < 0) return;
+  if (!sq_game[index].innerText) return;
   if (save) {
     aSave[nSave] = index;
     bSave[nSave++] = +sq_game[index].innerText;
@@ -306,10 +308,19 @@ const _undo = () => {
   if (+bSave[nSave] == 0) _no_tick(aSave[nSave], (save = false));
   else _tick(aSave[nSave], bSave[nSave], (save = false));
 };
+
+const _show_case = (index) => {
+  if (index < 0) return;
+  sq_game[index].innerText = tableR[index];
+  table[index] = tableG[index] = tableR[index];
+};
+
 // option config
 options = document.querySelectorAll(".option");
 options.forEach((option, index) => {
   option.addEventListener("click", () => {
     if (index == 0) _undo();
+    else if (index == 1) _no_tick(current_square);
+    else if (index == 3) _show_case(current_square);
   });
 });
